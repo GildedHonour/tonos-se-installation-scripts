@@ -22,7 +22,7 @@ install_or_update_rust
 if [ -d $TONOS_SE_TEMP_PATH ]; then
     if [ -d $TONOS_SE_TEMP_PATH/ton-node-se/target/release ]; then
         while true; do
-            say "the path '${TONOS_SE_TEMP_PATH}/ton-node-se' and a release in it already exist"
+            say "the path '${TONOS_SE_TEMP_PATH}/ton-node-se' and a release in it already exist;"
             read -p "remove and rebuild it? (y/n): " yn
             case $yn in
                 [Yy]* )
@@ -112,7 +112,7 @@ if [ $IS_NATIVE_UBUNTU_LINUX = true ]; then
     # ton node
     sed \
         -e "s|{{HOME_PATH}}|${HOME}|" \
-        -e "s|{{WORKING_DIR}}|${TONOS_SE_NODE_PATH}|" \
+        -e "s|{{TONOS_SE_NODE_PATH}}|${TONOS_SE_NODE_PATH}|" \
         -e "s|{{NAME}}|tonos_se_node_01|" \
         -e "s|{{USER_NAME}}|$(whoami)|" \
         tonos_se_node.systemd.service.template > tonos_se_node_01.service
@@ -123,7 +123,7 @@ if [ $IS_NATIVE_UBUNTU_LINUX = true ]; then
     # q-server
     sed \
         -e "s|{{HOME_PATH}}|${HOME}|" \
-        -e "s|{{WORKING_DIR}}|${TONOS_SE_NODE_PATH}|" \
+        -e "s|{{Q_SERVER_PATH}}|${Q_SERVER_PATH}|" \
         -e "s|{{NAME}}|q_server|" \
         -e "s|{{USER_NAME}}|$(whoami)|" \
         ton_q_server.systemd.service.template > ton_q_server.service

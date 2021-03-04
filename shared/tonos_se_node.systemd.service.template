@@ -8,7 +8,7 @@ ExecStart=ton-node \
     --config cfg_startup
 ExecStop=
 Restart=on-abort
-WorkingDirectory={{HOME_PATH}}/{{WORKING_DIR}}
+WorkingDirectory={{TONOS_SE_NODE_PATH}}
 SyslogIdentifier={{NAME}}
 User={{USER_NAME}}
 
