@@ -1,0 +1,2 @@
+*.sh text eol=LF
+/shared/* text eol=LF

@@ -1,0 +1,16 @@
+[Unit]
+Description=patron
+After=syslog.target
+Requires=
+
+[Service]
+ExecStart=ton-node \
+    --config cfg_startup
+ExecStop=
+Restart=on-abort
+WorkingDirectory={{HOME_PATH}}/{{WORKING_DIR}}
+SyslogIdentifier={{NAME}}
+User={{USER_NAME}}
+
+[Install]
+WantedBy=multi-user.target

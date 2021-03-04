@@ -1,0 +1,25 @@
+[Unit]
+Description=patron
+After=syslog.target
+Requires=
+
+[Service]
+ExecStart=node index.js
+ExecStop=
+Restart=on-abort
+WorkingDirectory={{HOME_PATH}}/{{WORKING_DIR}}
+Environment=Q_DATA_MUT=http://127.0.0.1:8529
+Environment=Q_DATA_HOT=${Q_DATA_MUT}
+Environment=Q_SLOW_QUERIES_MUT=${Q_DATA_MUT}
+Environment=Q_SLOW_QUERIES_HOT=${Q_DATA_MUT}
+Environment=Q_REQUESTS_MODE=rest
+Environment=Q_REQUESTS_SERVER=http://127.0.0.1
+Environment=Q_HOST=127.0.0.1
+Environment=Q_PORT=4000
+SyslogIdentifier={{NAME}}
+User={{USER_NAME}}
+KillSignal=SIGQUIT
+PIDFile=/tmp/{{NAME}}.pid
+
+[Install]
+WantedBy=multi-user.target
