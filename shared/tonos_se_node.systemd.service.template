@@ -1,10 +1,9 @@
 [Unit]
-Description=patron
+Description={{NAME}}
 After=syslog.target
-Requires=
 
 [Service]
-ExecStart=ton-node --config cfg_startup
+ExecStart={{TONOS_SE_NODE_PATH}}/ton-node --config cfg_startup
 Restart=on-abort
 WorkingDirectory={{TONOS_SE_NODE_PATH}}
 SyslogIdentifier={{NAME}}
