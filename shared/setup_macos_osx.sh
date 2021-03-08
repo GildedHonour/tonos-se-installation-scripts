@@ -5,8 +5,8 @@ PACKAGE_MANAGER_UPDATE_CMD="$PACKAGE_MANAGER update"
 PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install"
 
 # install libraries
-sudo $PACKAGE_MANAGER_UPDATE_CMD
-sudo $PACKAGE_MANAGER_INSTALL_CMD \
+$PACKAGE_MANAGER_UPDATE_CMD
+$PACKAGE_MANAGER_INSTALL_CMD \
     cmake make clang gcc g++ \
     curl ca-certificates git \
     musl musl-dev \
@@ -63,8 +63,8 @@ chmod +x $Q_SERVER_PATH/run.sh
 
 # install arangodb
 if [ -z $(dpkg -l | grep arangodb3) ]; then
-    sudo $PACKAGE_MANAGER_UPDATE_CMD
-    sudo $PACKAGE_MANAGER_INSTALL_CMD arangodb3
+    $PACKAGE_MANAGER_UPDATE_CMD
+    $PACKAGE_MANAGER_INSTALL_CMD arangodb3
 
     # steps to go through manually:
 
@@ -80,7 +80,7 @@ fi
 
 # install nginx
 if [ -z $(dpkg -l | grep nginx) ]; then
-    sudo $PACKAGE_MANAGER_INSTALL_CMD nginx
+    $PACKAGE_MANAGER_INSTALL_CMD nginx
     sudo cp $THIS_SCRIPT_BASE_PATH/shared/nginx.tonos_se.conf /etc/nginx/conf.d/.
 
     # TODO

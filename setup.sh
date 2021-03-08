@@ -86,15 +86,13 @@ build_tonos_se_node() {
     say_status "running tests #1"
     export PKG_CONFIG_ALLOW_CROSS=1
     export RUSTFLAGS="-C target-feature=-crt-static"
-
     git clone $TONOS_SE_REPO_GIT_HTTPS $TONOS_SE_TEMP_PATH
+    cd $TONOS_SE_TEMP_PATH/ton-node-se/poa
+    source $HOME/.cargo/env && cargo test
 
 
     # run tests 2
     say_status "running tests #2"
-    cd $TONOS_SE_TEMP_PATH/ton-node-se/poa
-    source $HOME/.cargo/env && cargo test
-
     cd $TONOS_SE_TEMP_PATH/ton-node-se/ton_node
     cargo test --features "ci_run"
 
