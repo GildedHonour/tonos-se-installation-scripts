@@ -56,7 +56,10 @@ chmod +x $TONOS_SE_NODE_PATH/run.sh
 rm -rf $Q_SERVER_PATH
 git clone --recursive --branch $Q_SERVER_GITHUB_REV $Q_SERVER_GITHUB_REPO_HTTPS $Q_SERVER_PATH
 cd $Q_SERVER_PATH
+
+$PACKAGE_MANAGER_UPDATE_CMD node
 npm install --production
+
 cp $THIS_SCRIPT_BASE_PATH/shared/run_q_server.sh $Q_SERVER_PATH/run.sh
 chmod +x $Q_SERVER_PATH/run.sh
 
