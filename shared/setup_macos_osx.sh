@@ -7,7 +7,7 @@ PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install"
 # install libraries
 $PACKAGE_MANAGER_UPDATE_CMD
 $PACKAGE_MANAGER_INSTALL_CMD \
-    cmake make clang gcc g++ \
+    cmake make gcc g++ \
     curl ca-certificates git \
     musl musl-dev \
     npm \
@@ -62,7 +62,7 @@ chmod +x $Q_SERVER_PATH/run.sh
 
 
 # install arangodb
-if [ -z $(dpkg -l | grep arangodb3) ]; then
+if [ -z $(brew ls --versions arangodb3) ]; then
     $PACKAGE_MANAGER_UPDATE_CMD
     $PACKAGE_MANAGER_INSTALL_CMD arangodb3
 
@@ -74,17 +74,17 @@ if [ -z $(dpkg -l | grep arangodb3) ]; then
     # set 'backup database before doing an upgrade.' - yes
 
     # TODO
-    sudo service arangodb3 start
+    brew services start arangodb3
 fi
 
 
 # install nginx
-if [ -z $(dpkg -l | grep nginx) ]; then
+if [ -z $(brew ls --versions nginx) ]; then
     $PACKAGE_MANAGER_INSTALL_CMD nginx
-    sudo cp $THIS_SCRIPT_BASE_PATH/shared/nginx.tonos_se.conf /etc/nginx/conf.d/.
+    sudo cp $THIS_SCRIPT_BASE_PATH/shared/nginx.tonos_se.conf /usr/local/etc/nginx/servers/.
 
     # TODO
-    sudo service nginx start
+    brew services start nginx
 fi
 
 
