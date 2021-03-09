@@ -27,7 +27,7 @@ if [ -d $TONOS_SE_TEMP_PATH ]; then
             case $yn in
                 [Yy]* )
                     rm -rf $TONOS_SE_TEMP_PATH
-                    build_tonos_se_node
+                    setup_tonos_se_node
                     break
                 ;;
 
@@ -42,10 +42,10 @@ if [ -d $TONOS_SE_TEMP_PATH ]; then
         done
     else
         rm -rf $TONOS_SE_TEMP_PATH
-        build_tonos_se_node
+        setup_tonos_se_node
     fi
 else
-    build_tonos_se_node
+    setup_tonos_se_node
 fi
 
 chmod +x $TONOS_SE_NODE_PATH/run.sh

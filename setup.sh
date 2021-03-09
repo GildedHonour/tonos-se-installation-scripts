@@ -79,48 +79,38 @@ install_or_update_rust() {
     rustc --version
 }
 
-build_tonos_se_node() {
+setup_tonos_se_node() {
     say "building tonos se node..."
 
-    # run tests 1
-    say_status "running tests #1"
-    export PKG_CONFIG_ALLOW_CROSS=1
-    export RUSTFLAGS="-C target-feature=-crt-static"
-    git clone $TONOS_SE_REPO_GIT_HTTPS $TONOS_SE_TEMP_PATH
-    cd $TONOS_SE_TEMP_PATH/ton-node-se/poa
-    source $HOME/.cargo/env && cargo test
+    # TODO:
+    # instead download binary precompiled files of TONOS SE node: 'tone-node' and 'create-image'
+    require_cmd "curl"
+    local _url
+    _url="???"
+    curl _url
 
 
-    # run tests 2
-    say_status "running tests #2"
-    cd $TONOS_SE_TEMP_PATH/ton-node-se/ton_node
-    cargo test --features "ci_run"
+
+    # tar -xzf file123.tar.gz -C /tmp
+
+    # rm -rf $TONOS_SE_NODE_PATH && mkdir -p $TONOS_SE_NODE_PATH
+    # cp -R \
+    #     $TONOS_SE_TEMP_PATH/ton-node-se/target/release/${BIN_TARGET} \
+    #     $TONOS_SE_NODE_PATH/ton-node
+
+    # cp \
+    #     config/log_cfg.yml \
+    #     config/cfg_startup \
+    #     config/key01 \
+    #     config/pub01 \
+    #     $TONOS_SE_NODE_PATH/
+
+    # cp $THIS_SCRIPT_BASE_PATH/shared/run_ton_node.sh $TONOS_SE_NODE_PATH/run.sh
+
+    # mkdir $TONOS_SE_NODE_PATH/create-msg
+    # cp -R $TONOS_SE_TEMP_PATH/ton-node-se/target/release/create-msg $TONOS_SE_NODE_PATH/create-msg/.
 
 
-    # build release
-    say_status "building release"
-    cd $TONOS_SE_TEMP_PATH/ton-node-se
-    cargo build --release
-
-
-    # copy files that have been built
-    rm -rf $TONOS_SE_NODE_PATH && mkdir -p $TONOS_SE_NODE_PATH
-    cp -R \
-        $TONOS_SE_TEMP_PATH/ton-node-se/target/release/${BIN_TARGET} \
-        $TONOS_SE_NODE_PATH/ton-node
-
-    cp \
-        config/log_cfg.yml \
-        config/cfg_startup \
-        config/key01 \
-        config/pub01 \
-        $TONOS_SE_NODE_PATH/
-
-
-    cp $THIS_SCRIPT_BASE_PATH/shared/run_ton_node.sh $TONOS_SE_NODE_PATH/run.sh
-
-    mkdir $TONOS_SE_NODE_PATH/create-msg
-    cp -R $TONOS_SE_TEMP_PATH/ton-node-se/target/release/create-msg $TONOS_SE_NODE_PATH/create-msg/.
 
     say_status "done"
 }
