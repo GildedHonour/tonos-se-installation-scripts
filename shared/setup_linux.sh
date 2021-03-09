@@ -4,6 +4,16 @@ PACKAGE_MANAGER="apt"
 PACKAGE_MANAGER_UPDATE_CMD="$PACKAGE_MANAGER update"
 PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install --yes"
 
+
+is_package_installed() {
+    apt list $1 2>/dev/null | grep -qi installed
+}
+
+is_systemd_enabled() {
+    [[ -d /run/systemd/system ]]
+}
+
+
 # install libraries
 sudo $PACKAGE_MANAGER_UPDATE_CMD
 sudo $PACKAGE_MANAGER_INSTALL_CMD \

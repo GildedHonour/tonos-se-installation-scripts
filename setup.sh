@@ -83,7 +83,7 @@ setup_tonos_se_node() {
     say "building tonos se node..."
 
     # TODO:
-    # instead download binary precompiled files of TONOS SE node: 'tone-node' and 'create-image'
+    # instead download binary precompiled files of TONOS SE node: 'ton_node_startup' and 'create-image'
     require_cmd "curl"
     local _url
     _url="???"
@@ -94,8 +94,8 @@ setup_tonos_se_node() {
     # tar -xzf file123.tar.gz -C /tmp
 
     # rm -rf $TONOS_SE_NODE_PATH && mkdir -p $TONOS_SE_NODE_PATH
-    # cp -R \
-    #     $TONOS_SE_TEMP_PATH/ton-node-se/target/release/${BIN_TARGET} \
+    # cp \
+    #     ${BIN_TARGET} \
     #     $TONOS_SE_NODE_PATH/ton-node
 
     # cp \
@@ -113,14 +113,6 @@ setup_tonos_se_node() {
 
 
     say_status "done"
-}
-
-is_systemd_enabled() {
-    [[ -d /run/systemd/system ]]
-}
-
-is_package_installed() {
-    apt list $1 2>/dev/null | grep -qi installed
 }
 
 

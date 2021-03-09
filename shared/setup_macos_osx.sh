@@ -7,7 +7,7 @@ PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install"
 # install libraries
 $PACKAGE_MANAGER_UPDATE_CMD
 $PACKAGE_MANAGER_INSTALL_CMD \
-    cmake make gcc g++ \
+    cmake make gcc \
     curl ca-certificates git \
     musl musl-dev \
     npm \
@@ -57,7 +57,7 @@ rm -rf $Q_SERVER_PATH
 git clone --recursive --branch $Q_SERVER_GITHUB_REV $Q_SERVER_GITHUB_REPO_HTTPS $Q_SERVER_PATH
 cd $Q_SERVER_PATH
 
-$PACKAGE_MANAGER_UPDATE_CMD node
+$PACKAGE_MANAGER upgrade node
 npm install --production
 
 cp $THIS_SCRIPT_BASE_PATH/shared/run_q_server.sh $Q_SERVER_PATH/run.sh
@@ -66,7 +66,6 @@ chmod +x $Q_SERVER_PATH/run.sh
 
 # install arangodb
 if [ -z $(brew ls --versions arangodb3) ]; then
-    $PACKAGE_MANAGER_UPDATE_CMD
     $PACKAGE_MANAGER_INSTALL_CMD arangodb3
 
     # steps to go through manually:
