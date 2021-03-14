@@ -85,7 +85,7 @@ install_or_update_rust() {
 }
 
 setup_tonos_se_node() {
-    say "building tonos se node..."
+    say "downloading and setting up tonos se node..."
     require_cmd "curl"
 
     local _arch_file_name="tonos_precompiled__linux_x86_64.tar.gz"
@@ -95,10 +95,9 @@ setup_tonos_se_node() {
     rm -rf $_tonos_node_unzip_dir; mkdir $_tonos_node_unzip_dir
     tar -xf $_arch_file_name -C $_tonos_node_unzip_dir/
 
-    rm -rf $TONOS_SE_NODE_PATH && mkdir -p $TONOS_SE_NODE_PATH
+    rm -rf $TONOS_SE_NODE_PATH
+    mkdir -p $TONOS_SE_NODE_PATH/create-msg
     cp $_tonos_node_unzip_dir/${BIN_TARGET} $TONOS_SE_NODE_PATH/ton-node
-
-    mkdir $TONOS_SE_NODE_PATH/create-msg
     cp $_tonos_node_unzip_dir/create-msg $TONOS_SE_NODE_PATH/create-msg/.
 
 
@@ -112,7 +111,6 @@ setup_tonos_se_node() {
         $TONOS_SE_NODE_PATH/
 
     cp $THIS_SCRIPT_BASE_PATH/shared/run_ton_node.sh $TONOS_SE_NODE_PATH/run.sh
-
 
     say_status "done"
 }
