@@ -13,12 +13,14 @@ TONOS_SE_NODE_PATH="$HOME/ton-node_01"
 TONOS_SE_TEMP_PATH="/tmp/tonos-se"
 TONOS_SE_REPO_GIT_HTTPS="https://github.com/tonlabs/tonos-se.git"
 
+
 Q_SERVER_GITHUB_REPO_HTTPS="https://github.com/tonlabs/ton-q-server"
 Q_SERVER_GITHUB_REV="master"
 Q_SERVER_PATH="$HOME/ton-q-server"
 Q_DATA_MUT=http://127.0.0.1:8529
 
 PRECOMPILED_BINARY_FILES_RELEASE_VERSION="1.0"
+PRECOMPILED_BINARY_FILES_RELEASE_URL=""
 
 
 say() {
@@ -86,9 +88,8 @@ setup_tonos_se_node() {
     say "building tonos se node..."
     require_cmd "curl"
 
-    local _url="https://github.com/GildedHonour/tonos-se-installation-scripts/releases/download/${PRECOMPILED_BINARY_FILES_RELEASE_VERSION}/tonos-se-installation-scripts__linux_x86_64.tar.gz"
     local _arch_file_name="tonos_precompiled__linux_x86_64.tar.gz"
-    curl -L $_url -o $_arch_file_name
+    curl -L $PRECOMPILED_BINARY_FILES_RELEASE_URL -o $_arch_file_name
 
     local _tonos_node_unzip_dir="tonos-se-installation-scripts__linux_x86_64"
     rm -rf $_tonos_node_unzip_dir; mkdir $_tonos_node_unzip_dir
@@ -132,6 +133,8 @@ main() {
     local _os_distro=$(detect_os)
     if [ $_os_distro = "macos_osx" ]; then
         say "your OS is Mac OSX"
+        PRECOMPILED_BINARY_FILES_RELEASE_URL="https://github.com/GildedHonour/tonos-se-installation-scripts/releases/download/${PRECOMPILED_BINARY_FILES_RELEASE_VERSION}/tonos-se-installation-scripts__macos.tar.gz"
+
       . ./shared/setup_macos_osx.sh
     elif [ $_os_distro = "native_linux_ubuntu" ]; then
         say "your OS is Linux Ubuntu"
@@ -143,12 +146,15 @@ main() {
             err "systemd is not supported or not enabled"
         fi
 
-
         IS_NATIVE_UBUNTU_LINUX=true
+        PRECOMPILED_BINARY_FILES_RELEASE_URL="https://github.com/GildedHonour/tonos-se-installation-scripts/releases/download/${PRECOMPILED_BINARY_FILES_RELEASE_VERSION}/tonos-se-installation-scripts__linux_x86_64.tar.gz"
+
       . ./shared/setup_linux.sh
     elif [ $_os_distro = "windows_ubuntu_wsl" ]; then
         say "your OS is Linux Ubuntu under Windows WSL"
+
         IS_NATIVE_UBUNTU_LINUX=false
+        PRECOMPILED_BINARY_FILES_RELEASE_URL="https://github.com/GildedHonour/tonos-se-installation-scripts/releases/download/${PRECOMPILED_BINARY_FILES_RELEASE_VERSION}/tonos-se-installation-scripts__linux_x86_64.tar.gz"
       . ./shared/setup_linux.sh
     else
         err "your platform or OS is unsupported: ${_os_distro}"

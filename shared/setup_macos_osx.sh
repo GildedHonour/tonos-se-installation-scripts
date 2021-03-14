@@ -33,36 +33,40 @@ $PACKAGE_MANAGER_INSTALL_CMD \
 # install rust
 install_or_update_rust
 
-
-if [ -d $TONOS_SE_TEMP_PATH ]; then
-    if [ -d $TONOS_SE_TEMP_PATH/ton-node-se/target/release ]; then
-        while true; do
-            read -p "the path '${TONOS_SE_TEMP_PATH}/ton-node-se' and a release in it already exist; remove and build it again? (y/n): " yn
-            case $yn in
-                [Yy]* )
-                    rm -rf $TONOS_SE_TEMP_PATH
-                    setup_tonos_se_node
-                    break
-                ;;
-
-                [Nn]* )
-                    break
-                    ;;
-
-                * )
-                    echo "please answer 'y' (yes) or 'n' (no)."
-                    ;;
-            esac
-        done
-    else
-        rm -rf $TONOS_SE_TEMP_PATH
-        setup_tonos_se_node
-    fi
-else
-    setup_tonos_se_node
-fi
-
+# install tonos se node
+rm -rf $TONOS_SE_TEMP_PATH
+setup_tonos_se_node
 chmod +x $TONOS_SE_NODE_PATH/run.sh
+
+
+# if [ -d $TONOS_SE_TEMP_PATH ]; then
+#     if [ -d $TONOS_SE_TEMP_PATH/ton-node-se/target/release ]; then
+#         while true; do
+#             read -p "the path '${TONOS_SE_TEMP_PATH}/ton-node-se' and a release in it already exist; remove and build it again? (y/n): " yn
+#             case $yn in
+#                 [Yy]* )
+#                     rm -rf $TONOS_SE_TEMP_PATH
+#                     setup_tonos_se_node
+#                     break
+#                 ;;
+
+#                 [Nn]* )
+#                     break
+#                     ;;
+
+#                 * )
+#                     echo "please answer 'y' (yes) or 'n' (no)."
+#                     ;;
+#             esac
+#         done
+#     else
+#         rm -rf $TONOS_SE_TEMP_PATH
+#         setup_tonos_se_node
+#     fi
+# else
+#     setup_tonos_se_node
+# fi
+
 
 
 
