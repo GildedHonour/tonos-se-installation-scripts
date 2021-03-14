@@ -1,0 +1,13 @@
+[Unit]
+Description={{NAME}}
+After=syslog.target
+
+[Service]
+ExecStart={{TONOS_SE_NODE_PATH}}/ton-node --config cfg_startup
+Restart=on-abort
+WorkingDirectory={{TONOS_SE_NODE_PATH}}
+SyslogIdentifier={{NAME}}
+User={{USER_NAME}}
+
+[Install]
+WantedBy=multi-user.target

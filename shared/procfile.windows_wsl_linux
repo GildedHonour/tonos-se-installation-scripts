@@ -1,0 +1,4 @@
+q_server: $HOME/ton-q-server/run.sh
+node_workers: $HOME/ton-node_01/run.sh
+arango: $HOME/arango/run.sh
+nginx: nginx -g "daemon off;"
