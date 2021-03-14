@@ -7,16 +7,12 @@ PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install"
 
 is_port_free() {
     sudo lsof -i TCP:$1 | grep LISTEN
-  # sudo lsof -iTCP:$PORT -sTCP:LISTEN 
-
     if [ $? = 0 ]; then
         echo false
     else
         echo true
     fi
 }
-
-
 
 
 # install libraries
@@ -38,38 +34,6 @@ rm -rf $TONOS_SE_TEMP_PATH
 setup_tonos_se_node
 chmod +x $TONOS_SE_NODE_PATH/run.sh
 
-
-# if [ -d $TONOS_SE_TEMP_PATH ]; then
-#     if [ -d $TONOS_SE_TEMP_PATH/ton-node-se/target/release ]; then
-#         while true; do
-#             read -p "the path '${TONOS_SE_TEMP_PATH}/ton-node-se' and a release in it already exist; remove and build it again? (y/n): " yn
-#             case $yn in
-#                 [Yy]* )
-#                     rm -rf $TONOS_SE_TEMP_PATH
-#                     setup_tonos_se_node
-#                     break
-#                 ;;
-
-#                 [Nn]* )
-#                     break
-#                     ;;
-
-#                 * )
-#                     echo "please answer 'y' (yes) or 'n' (no)."
-#                     ;;
-#             esac
-#         done
-#     else
-#         rm -rf $TONOS_SE_TEMP_PATH
-#         setup_tonos_se_node
-#     fi
-# else
-#     setup_tonos_se_node
-# fi
-
-
-
-
 # install q-server
 rm -rf $Q_SERVER_PATH
 git clone --recursive --branch $Q_SERVER_GITHUB_REV $Q_SERVER_GITHUB_REPO_HTTPS $Q_SERVER_PATH
@@ -83,14 +47,14 @@ chmod +x $Q_SERVER_PATH/run.sh
 
 
 # install arangodb
-if [ -z $(brew ls --versions arangodb) ]; then
+if [ -z "$(brew ls --versions arangodb)" ]; then
     $PACKAGE_MANAGER_INSTALL_CMD arangodb
     brew services start arangodb
 fi
 
 
 # install nginx
-if [ -z $(brew ls --versions nginx) ]; then
+if [ -z "$(brew ls --versions nginx)" ]; then
     say_status "arangodb3: setting up and installing"
 
     $PACKAGE_MANAGER_INSTALL_CMD nginx
