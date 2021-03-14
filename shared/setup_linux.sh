@@ -7,6 +7,8 @@ PACKAGE_MANAGER_INSTALL_CMD="$PACKAGE_MANAGER install --yes"
 ARANGODB_VERSION="35"
 ARANGODB_PKG_VERSION="3.5.3-1"
 
+SYSTEMD_TONOS_NODE_SERVICE_NAME="tonos_se_node_01"
+
 
 is_package_installed() {
     apt list $1 2>/dev/null | grep -qi installed
@@ -154,8 +156,8 @@ if [ $IS_NATIVE_UBUNTU_LINUX = true ]; then
     sudo systemctl enable nginx
     sudo systemctl start nginx
 
-    sudo systemctl enable ton_node_01
-    sudo systemctl start ton_node_01
+    sudo systemctl enable $SYSTEMD_TONOS_NODE_SERVICE_NAME
+    sudo systemctl start $SYSTEMD_TONOS_NODE_SERVICE_NAME
 
     say_status "done"
 
