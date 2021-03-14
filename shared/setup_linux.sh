@@ -150,6 +150,9 @@ if [ $IS_NATIVE_UBUNTU_LINUX = true ]; then
 
     sudo systemctl daemon-reload
 
+    # TODO: check if some have  already been enabled and are running?
+
+
     sudo systemctl enable arangodb3
     sudo systemctl start arangodb3
 
