@@ -67,7 +67,6 @@ fi
 
 
 # install honcho
-sudo apt install --yes python3-pip
 pip3 install --upgrade pip
 pip3 install honcho
 

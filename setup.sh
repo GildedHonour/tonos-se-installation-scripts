@@ -13,7 +13,6 @@ TONOS_SE_NODE_PATH="$HOME/ton-node_01"
 TONOS_SE_TEMP_PATH="/tmp/tonos-se"
 TONOS_SE_REPO_GIT_HTTPS="https://github.com/tonlabs/tonos-se.git"
 
-
 Q_SERVER_GITHUB_REPO_HTTPS="https://github.com/tonlabs/ton-q-server"
 Q_SERVER_GITHUB_REV="master"
 Q_SERVER_PATH="$HOME/ton-q-server"
