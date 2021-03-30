@@ -27,7 +27,7 @@ say() {
 }
 
 say_status() {
-    printf '===>  %s\n' "$1"
+    printf '===> %s\n' "$1"
 }
 
 
@@ -66,6 +66,8 @@ require_cmd() {
 }
 
 install_or_update_rust() {
+    require_cmd "curl"
+
     if ! check_cmd rustup; then
         say "rust: installing"
         curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y

@@ -36,7 +36,8 @@ sudo $PACKAGE_MANAGER_INSTALL_CMD \
     musl musl-dev \
     npm \
     openssh-client  openssl \
-    libssl-dev pkg-config
+    libssl-dev pkg-config \
+    curl wget
 
 
 # install rust
