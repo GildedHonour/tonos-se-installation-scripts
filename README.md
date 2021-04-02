@@ -25,7 +25,8 @@ cd tonos-se-installation-scripts
 For convenience, grant a user the permission to run "sudo" commands, preferably without password, this way you won't have to enter password during installation multiple times. This is set up via "visudo" command.
 
 
-#### supported OS:
+#### supported OS
   * Linux (Ubuntu 21.x)
   * MacOS (Catalina)
   * Windows (via WSL/WSL2)
+

@@ -86,7 +86,8 @@ else
     say_status "nginx: done"
 fi
 
-sudo cp $THIS_SCRIPT_BASE_PATH/shared/nginx.tonos_se.conf /etc/nginx/conf.d/tonos_se.conf
+sudo cp $THIS_SCRIPT_BASE_PATH/shared/nginx.tonos_se.conf /etc/nginx/sites-enabled/tonos_se_node
+sudo mv /etc/nginx/sites-enabled/default /etc/nginx/defaul_website.bak
 
 
 
@@ -129,10 +130,13 @@ if [ $IS_NATIVE_UBUNTU_LINUX = true ]; then
     sudo systemctl start arangodb3
 
     sudo systemctl enable nginx
-    sudo systemctl start nginx
+    sudo systemctl restart nginx
 
     sudo systemctl enable $SYSTEMD_TONOS_NODE_SERVICE_NAME
     sudo systemctl start $SYSTEMD_TONOS_NODE_SERVICE_NAME
+
+    sudo systemctl enable nginx
+    sudo systemctl start ton_q_server
 
     say_status "done"
 
