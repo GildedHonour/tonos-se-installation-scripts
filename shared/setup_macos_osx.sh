@@ -40,7 +40,7 @@ git clone --recursive --branch $Q_SERVER_GITHUB_REV $Q_SERVER_GITHUB_REPO_HTTPS 
 cd $Q_SERVER_PATH
 
 $PACKAGE_MANAGER upgrade node
-npm install --production
+npm install --production --legacy-peer-deps
 
 cp $THIS_SCRIPT_BASE_PATH/shared/run_q_server.sh $Q_SERVER_PATH/run.sh
 chmod +x $Q_SERVER_PATH/run.sh
